@@ -9,23 +9,48 @@ public  abstract class Monstruos{
 	protected String estado = 'Ok';
 
 	Monstruos (int nivel, String apodo){
-		this.ataque = nivel * 15;
-		this.defensa = nivel * 10;
-		this.velocidad = nivel * 10;
-		this.hp = nivel  *15;
+		setAtaque((float)nivel * 15.0);
+		setDefensa((float)nivel * 10.0);
+		setVelocidad( (float)nivel * 10.0);
+		this.hp = nivel  *15.0;
 		this.apodo = apodo;
 	}
-	public  void recibirDanio(float ataque){
-		this.hp = hp - ataque * (1/3)* defensa;
+
+	Monstruos (int nivel){
+		setAtaque((float)nivel * 15.0);
+		setDefensa((float)nivel * 10.0);
+		setVelocidad( (float)nivel * 10.0);
+		this.hp = nivel  *15.0;
 	}
-	public  void recibirAtaque(Pocima p);
-	public  void recibirDefensa();
-	public  void getAtaque();
-	public  void getDefensa();
-	public  void getVelocidad();
-	public  void setAtaque();
-	public  void setDefensa();
-	public  void setVelocidad();
+
+	public  void recibirDanio(float ataque){
+		this.hp = this.hp - ataque * (1/3)* defensa;
+	}
+	public  void recibirHp(PocimaVida p);
+		this.hp = this.hp + p.aumento;
+
+	public  void recibirDefensa(PocimaDefensa p){
+		this.defensa = this.defensa + p.aumento;
+	}
+	public  float getAtaque(){
+		return this.ataque;
+	}
+	public  float getDefensa(){
+		return this.defensa;
+	}
+	public  float getVelocidad(){
+		return this.velocidad;
+	}
+	public  void setAtaque(float ataque){
+		this.ataque += ataque;
+	}
+	public  void setDefensa(float defensa){
+		this.defensa += defensa;
+	}
+	public  void setVelocidad(float velocidad){
+		this.velocidad += velocidad;
+
+	}
 	public abstract void multiplicadorElemental();
 	public abstract void ataque1();
 	public abstract void ataque2();
