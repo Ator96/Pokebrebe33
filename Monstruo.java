@@ -1,9 +1,11 @@
+package pokeprebe;
+
 /**
 *@author Oscar Gutiérrez Castillo
 *@version 1.0.0.
 */
 
-public  abstract class Monstruo{
+public abstract class Monstruo{
 	
 	protected float hp ;
 	protected String apodo;
@@ -13,11 +15,10 @@ public  abstract class Monstruo{
 	protected float velocidad;
 	protected String estado = "Ok";
 	/**
-	*
 	*@param nivel nivel del monstruo dado por el usuario
 	*@param apodo apodo del monstruo dado por el usuario
-	*
 	*/
+        @SuppressWarnings("OverridableMethodCallInConstructor")
 	Monstruo (int nivel, String apodo){
 		setAtaque((float)(nivel * 15.0));
 		setDefensa((float)(nivel * 10.0));
@@ -29,6 +30,7 @@ public  abstract class Monstruo{
 	/**
 	*@param nivel nivel del mosntruo dado por el usuario
 	*/
+        @SuppressWarnings("OverridableMethodCallInConstructor")
 	Monstruo (int nivel){
 		setAtaque((float)(nivel * 15.0));
 		setDefensa((float)(nivel * 10.0));
@@ -37,15 +39,24 @@ public  abstract class Monstruo{
 	}
 	/**
 	*@param ataque Danio recibido al monstruo
+     * @return 
 	*/
-	public  void recibirDanio(float ataque){
-		this.hp = this.hp - ataque * (1/3)* defensa;
+	public  String recibirDanio(float ataque){
+		this.hp = this.hp - ataque;
+		if (this.hp <= 0){
+			estado = "fuera de combate";
+			return "ha sido derrotado" ;
+		}
+		return "" ;
+
 	}
 	/**
 	*@param p pocima de aumento de vida recibida por su dueño
+        * @return Comentario sobre el estado
 	*/
-	public  void recibirHp(PocimaVida p){
+	public  String recibirHp(PocimaVida p){
 		this.hp = this.hp + p.aumento;
+		return "ha aumentado la vida";
 	}
 	/**
 	*@param p pocima de aumento de defensa recibida por el dueño
@@ -54,7 +65,7 @@ public  abstract class Monstruo{
 		this.defensa = this.defensa + p.aumento;
 	}
 	/**
-	*@param  p
+	*@return ataque Obtenemos poder de ataque que posee el monstruo
 	*/
 	public  float getAtaque(){
 		return this.ataque;
@@ -75,7 +86,7 @@ public  abstract class Monstruo{
 		this.velocidad += velocidad;
 
 	}
-	public abstract void multiplicadorElemental();
-	public abstract void ataque1();
-	public abstract void ataque2();
+	public abstract float multiplicadorElemental(MonstruoEspecifico m);
+	public abstract String ataque1(float multiplicador,MonstruoEspecifico m);
+	public abstract String ataque2(MonstruoEspecifico m);
 }
