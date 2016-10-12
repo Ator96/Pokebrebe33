@@ -1,5 +1,9 @@
 package pokeprebe;
 
+/**
+* @author David Yaxkin Sánchez Neri
+* Clase que define los metodos de una pocima de ataque
+*/
 public class PocimaAtaque extends Pocima {
 	
 	bonificacion = 0.1;
