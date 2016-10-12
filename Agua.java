@@ -1,8 +1,7 @@
 package pokeprebe;
 
 /**
- *
- * @author Ator97
+ * @author Oscar Gutiérrez Castillo
  */
 public abstract class Agua extends Monstruo {
 
@@ -13,7 +12,6 @@ public abstract class Agua extends Monstruo {
     }
 
     /**
-     *
      * @param nivel
      */
     public Agua(int nivel) {
@@ -21,7 +19,6 @@ public abstract class Agua extends Monstruo {
     }
 
     /**
-     *
      * @param m
      * @return
      */
@@ -43,6 +40,12 @@ public abstract class Agua extends Monstruo {
         return 0;
         
     }
+
+    /**
+     * @param multiplicador
+     * @param m
+     * @return
+     */
     @Override
     public String ataque1(float multiplicador, MonstruoEspecifico m) {
 	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
