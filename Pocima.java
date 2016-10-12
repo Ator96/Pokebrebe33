@@ -1,4 +1,12 @@
-public abstract class Pocima{
+package pokeprebe;
+
+/**
+*@author David Yaxkin Sánchez Neri
+*/
+
+public abstract class Pocima {
 	
-	float aumento;
+	float bonificacion;
+	
+	public float usar(Monstruo monstruo);
 }
