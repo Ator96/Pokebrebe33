@@ -1,4 +1,11 @@
-public class PocimaVida extends Pocima{
+package pokeprebe;
+
+public class PocimaVida extends Pocima {
 	
-	float aumento = 10;
+	bonificacion = 0.2;
+
+	public float usar(Monstruo monstruo) {
+		float aumento = monstruo.hp * bonificacion;
+		monstruo.recibirHp(aumento);
+	}
 }
