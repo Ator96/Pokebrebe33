@@ -3,8 +3,7 @@
 *@version 1.0.0.
 */
 
-
-public  abstract class Monstruos{
+public  abstract class Monstruo{
 	
 	protected float hp ;
 	protected String apodo;
@@ -12,29 +11,29 @@ public  abstract class Monstruos{
 	protected float ataque;
 	protected float defensa;
 	protected float velocidad;
-	protected String estado = 'Ok';
+	protected String estado = "Ok";
 	/**
 	*
 	*@param nivel nivel del monstruo dado por el usuario
 	*@param apodo apodo del monstruo dado por el usuario
 	*
 	*/
-	Monstruos (int nivel, String apodo){
-		setAtaque((float)nivel * 15.0);
-		setDefensa((float)nivel * 10.0);
-		setVelocidad( (float)nivel * 10.0);
-		this.hp = nivel  *15.0;
+	Monstruo (int nivel, String apodo){
+		setAtaque((float)(nivel * 15.0));
+		setDefensa((float)(nivel * 10.0));
+		setVelocidad( (float)(nivel * 10.0));
+		this.hp = nivel  * 15;
 		this.apodo = apodo;
 	}
 
 	/**
 	*@param nivel nivel del mosntruo dado por el usuario
 	*/
-	Monstruos (int nivel){
-		setAtaque((float)nivel * 15.0);
-		setDefensa((float)nivel * 10.0);
-		setVelocidad( (float)nivel * 10.0);
-		this.hp = nivel  *15.0;
+	Monstruo (int nivel){
+		setAtaque((float)(nivel * 15.0));
+		setDefensa((float)(nivel * 10.0));
+		setVelocidad( (float)(nivel * 10.0));
+		this.hp = nivel * 15;
 	}
 	/**
 	*@param ataque Danio recibido al monstruo
@@ -51,7 +50,7 @@ public  abstract class Monstruos{
 	/**
 	*@param p pocima de aumento de defensa recibida por el dueño
 	*/
-	public  void recibirDefensa(PocimaDefensa p){
+	public  void recibirDefensa(PocimaVida p){
 		this.defensa = this.defensa + p.aumento;
 	}
 	/**
