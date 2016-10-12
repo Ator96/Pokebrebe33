@@ -1,8 +1,12 @@
 package pokeprebe;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Scanner;
 
+/**
+* @author David Yaxkin Sánchez Neri
+* Clase que representa a un contrincante
+*/
 public class Contrincante {
 	
 	public String nombre;
@@ -25,24 +29,43 @@ public class Contrincante {
 		this.monstruos.add(new Monstruo);
 		*/
 	}
-
+	/**
+	* Guarda el monstruo activo en la banca
+	* @param monstruo Monstruo activo 
+	*/
 	public void guardaMonstruo(Monstruo monstruo) {
 		this.monstruos.add(monstruo);
 	}
 
-	public Monstruo elegirMonstruo(Monstruo monstruo) {
-		return remove(mostruos.indexOf(monstruo));
+	/**
+	* Cambia el monstruo activo en el combate
+	* @return Monstruo elegido para salir a combatir
+	*/
+	public Monstruo elegirMonstruo() {
+		Scanner leer = new Scanner(System.in);
+		int opcion;
+		listaMonstruo();
+		System.out.println("Elige un monstruo");
+		opcion = leer.nextInt();
+		return monstruos.remove(opcion);
 	}
 
+	/**
+	* Usa la pocima elegida en el monstruo elegido
+	* @param pocima Pocima a usar
+	* @param monstruo Monstruo en el que se usara la pocima
+	*/
 	public void usarPocima(Pocima pocima, Monstruo monstruo) {
 		pocima.usar(monstruo);
 		pocimas.remove(pocima);
 	}
 
+	/**
+	* Muestra los monstruos en la banca del contrincante.
+	*/
 	public void listaMonstruo() {
-		Iterator iterador = monstruos.iterator();
-		while(iterador.hasNext()) {
-			System.out.println("Monstruo: " + iterador.next().nombre);
+		for (int i = 0; i < monstruos.size(); i++) {
+			System.out.println((i+1) + ". Monstruo: " + iterador.next().nombre);
 			System.out.println("\tNivel: " + iterador.next().nivel);
 			System.out.println("\tHP: " + iterador.next().hp);
 			System.out.println("\tEstado: " + iterador.next().estado);
