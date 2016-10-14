@@ -19,35 +19,42 @@ public abstract class Agua extends Monstruo {
     }
 
     /**
-     * @param m
-     * @return
+     * @param m Es la clase padre del monstruo que recibe el ataque 
+     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
      */
     @Override
-    public float multiplicadorElemental(MonstruoEspecifico m) {
-	if (m instanceof Agua){
-		multiplicador = 0.5f; 
+    public float multiplicadorElemental(Agua m) {
+		return multiplicador = 0.5f; 
 	}
-	//if (m  instanceof Fuego){
-	//	multiplicador = (float) 2.0; 
-	//}
-	//if (m  instanceof Hierba){
-	//	multiplicador = (float) 0.5; 
-	//}		
-	//if (m  instanceof Electrico){
-	//	multiplicador = (float) 1.0; 
-
-        //}    
-        return 0;
-        
-    }
-
     /**
-     * @param multiplicador
-     * @param m
+     * @param m Es la clase padre del monstruo que recibe el ataque 
+     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
+     */
+	public float multiplicadorElemental(Fuego m){
+		return multiplicador = (float) 2.0; 
+	}
+    /**
+     * @param m Es la clase padre del monstruo que recibe el ataque 
+     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
+     */
+	public float multiplicadorElemental(Hierba m ){
+		return multiplicador = (float) 0.5; 
+	}
+    /**
+     * @param m Es la clase padre del monstruo que recibe el ataque 
+     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
+     */		
+	public float multiplicadorElemental(Electrico m ){
+		return multiplicador = (float) 1.0; 
+
+    }    
+    /**
+     * @param m 
      * @return
      */
     @Override
-    public String ataque1(float multiplicador, MonstruoEspecifico m) {
+    public float ataque1(Agua m){
+    	multiplicador = multiplicadorElemental(m);
 	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
 	if (danio <= 0){
 		return "parece que no ha habido daño alguno";
@@ -55,6 +62,47 @@ public abstract class Agua extends Monstruo {
 	m.recibirDanio(danio);    
         return null;
     }
-    
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Fuego m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Hierba m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Electrico m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
     
 }

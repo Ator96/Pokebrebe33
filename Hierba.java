@@ -18,22 +18,17 @@ public abstract class Hierba extends Monstruo{
      * @return
      */
     @Override
-    public float multiplicadorElemental(MonstruoEspecifico m) {
-	if (m instanceof Agua){
-		multiplicador = 2.0f; 
+    public float multiplicadorElemental(Agua m) {
+		return (float)2.0f; 
 	}
-	//if (m  instanceof Fuego){
-	//	multiplicador = (float) 0.5; 
-	//}
-	//if (m  instanceof Hierba){
-	//	multiplicador = (float) 0.5; 
-	//}		
-	//if (m  instanceof Electrico){
-	//	multiplicador = (float) 1.0; 
-
-        //}    
-        return 0;
-        
+	public float multiplicadorElemental(Fuego m ){
+		return (float) 0.5; 
+	}
+	public float multiplicadorElemental(Hierba m){
+		return  (float) 0.5; 
+	}	
+	public float multiplicadorElemental(Electrico m){
+	 	return  (float) 1.0;     
     }
 
     /**
@@ -51,4 +46,62 @@ public abstract class Hierba extends Monstruo{
 	m.recibirDanio(danio);    
         return null;
     }
+
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Agua m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Fuego m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Hierba m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
+    /**
+     * @param m 
+     * @return
+     */
+    @Override
+    public float ataque1(Electrico m){
+    	multiplicador = multiplicadorElemental(m);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
+    }
 }
+
