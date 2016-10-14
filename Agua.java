@@ -5,17 +5,12 @@ package pokeprebe;
  */
 public abstract class Agua extends Monstruo {
 
-    float multiplicador;
-
+    /**
+    *@param nivel Para definir los estatus inicailes del monstruo
+    *@param apodo En caso de que el usuario asigne un sobrenombre a su monstruo, en caso de que el usuaruo no de un apodo se pone el nombre default del monstruo
+    */
     public Agua(int nivel, String apodo) {
         super(nivel, apodo);
-    }
-
-    /**
-     * @param nivel
-     */
-    public Agua(int nivel) {
-        super(nivel);
     }
 
     /**
@@ -24,37 +19,37 @@ public abstract class Agua extends Monstruo {
      */
     @Override
     public float multiplicadorElemental(Agua m) {
-		return multiplicador = 0.5f; 
+		return  0.5f; 
 	}
     /**
      * @param m Es la clase padre del monstruo que recibe el ataque 
      * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
      */
 	public float multiplicadorElemental(Fuego m){
-		return multiplicador = (float) 2.0; 
+		return  (float) 2.0; 
 	}
     /**
      * @param m Es la clase padre del monstruo que recibe el ataque 
      * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
      */
 	public float multiplicadorElemental(Hierba m ){
-		return multiplicador = (float) 0.5; 
+		return  (float) 0.5; 
 	}
     /**
      * @param m Es la clase padre del monstruo que recibe el ataque 
      * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
      */		
 	public float multiplicadorElemental(Electrico m ){
-		return multiplicador = (float) 1.0; 
+		return (float) 1.0; 
 
     }    
     /**
-     * @param m 
-     * @return
+     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
+     * @return Estado sobre el daño
      */
     @Override
     public float ataque1(Agua m){
-    	multiplicador = multiplicadorElemental(m);
+    	float multiplicador = multiplicadorElemental(m);
 	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
 	if (danio <= 0){
 		return "parece que no ha habido daño alguno";
@@ -63,8 +58,8 @@ public abstract class Agua extends Monstruo {
         return null;
     }
     /**
-     * @param m 
-     * @return
+     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
+     * @return Estado sobre el daño
      */
     @Override
     public float ataque1(Fuego m){
@@ -77,8 +72,8 @@ public abstract class Agua extends Monstruo {
         return null;
     }
     /**
-     * @param m 
-     * @return
+     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
+     * @return Estado sobre el daño
      */
     @Override
     public float ataque1(Hierba m){
@@ -91,8 +86,8 @@ public abstract class Agua extends Monstruo {
         return null;
     }
     /**
-     * @param m 
-     * @return
+     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
+     * @return Estado sobre el daño
      */
     @Override
     public float ataque1(Electrico m){

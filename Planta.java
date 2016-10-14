@@ -3,18 +3,29 @@ package pokeprebe;
 
 /**
  *
- * @author Ator97
+ * @author Oscar Gutiérrez Castillo
  */
 class  Planta extends Hierba{
+
+    /**
+    *@param nivel nivel dado por el usuario para definir los status del monstruo
+    *@param apodo nombre que le da el usuario, solo sirve para personalizar
+    */
 
     public Planta(int nivel, String apodo) {
         super(nivel, apodo);
     }
 
-    public Planta(int nivel  ) {
-        super(nivel);
+    /**
+    *@param nivel nivel dado por el usuario para definir los status del monstruo
+    */
+    public Planta(int nivel) {
+        super(nivel,"Planta");
     }    
 
+    /**
+    *@param m Por polimorfismo afectamos directamente el status de vida del monstruo a atacar
+    */
     @Override
     public String ataque2(Monstruo m) {
         float danio = (float) (getAtaque() -  m.getDefensa() * 1.5);
