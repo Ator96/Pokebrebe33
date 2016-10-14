@@ -17,86 +17,35 @@ public abstract class Fuego extends Monstruo{
      * @param m Es la clase padre del monstruo que recibe el ataque 
      * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
      */
-    @Override
-    public float multiplicadorElemental(Hierba m) {
-		return (float)2.0f; 
+    public float multiplicadorElemental(Monstruo m) {
+        if (m instanceof Fuego) {
+            return (float)0.5f; 
 	}
-    /**
-     * @param m Es la clase padre del monstruo que recibe el ataque 
-     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
-     */
-	public float multiplicadorElemental(Fuego m ){
-		return (float) 0.5; 
+        if (m instanceof Agua) {
+            return (float)0.5f; 
 	}
-    /**
-     * @param m Es la clase padre del monstruo que recibe el ataque 
-     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
-     */
-	public float multiplicadorElemental(Agua m){
-		return  (float) 0.5; 
+        if (m instanceof Electrico) {
+            return (float)1.0f; 
 	}
+        if (m instanceof Hierba) {
+            return (float)2.0f; 
+	}
+        return 0;
+    }
+    
     /**
-     * @param m Es la clase padre del monstruo que recibe el ataque 
-     * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
+     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
+     * @return Estado sobre el daño
      */
-	public float multiplicadorElemental(Electrico m){
-	 	return  (float) 1.0;     
+    public String ataque1(Monstruo m){
+    	float multiplicador = multiplicadorElemental(m);
+        System.out.println(multiplicador);
+	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+	if (danio <= 0){
+		return "parece que no ha habido daño alguno";
+	}
+	m.recibirDanio(danio);    
+        return null;
     }
 
-    /**
-     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
-     * @return Estado sobre el daño
-     */
-    @Override
-    public float ataque1(Agua m){
-    	float multiplicador = multiplicadorElemental(m);
-	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-	if (danio <= 0){
-		return "parece que no ha habido daño alguno";
-	}
-	m.recibirDanio(danio);    
-        return null;
-    }
-    /**
-     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
-     * @return Estado sobre el daño
-     */
-    @Override
-    public float ataque1(Fuego m){
-    	float multiplicador = multiplicadorElemental(m);
-	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-	if (danio <= 0){
-		return "parece que no ha habido daño alguno";
-	}
-	m.recibirDanio(danio);    
-        return null;
-    }
-    /**
-     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
-     * @return Estado sobre el daño
-     */
-    @Override
-    public float ataque1(Hierba m){
-    	float multiplicador = multiplicadorElemental(m);
-	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-	if (danio <= 0){
-		return "parece que no ha habido daño alguno";
-	}
-	m.recibirDanio(danio);    
-        return null;
-    }
-    /**
-     * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
-     * @return Estado sobre el daño
-     */
-    @Override
-    public float ataque1(Electrico m){
-    	float multiplicador = multiplicadorElemental(m);
-	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-	if (danio <= 0){
-		return "parece que no ha habido daño alguno";
-	}
-	m.recibirDanio(danio);    
-        return null;
-    }
 }

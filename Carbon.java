@@ -19,7 +19,7 @@ class Carbon extends Fuego{
     /**
     *@param nivel nivel dado por el usuario para definir los status del monstruo
     */
-    public Carbon(int nivel  ) {
+    public Carbon(int nivel) {
         super(nivel,"Carbon");
     }    
 
@@ -28,13 +28,12 @@ class Carbon extends Fuego{
     */
     @Override
     public String ataque2(Monstruo m) {
-        float danio = (float) (getAtaque() -  m.getDefensa() * 1.5);
+        float danio = (float) (getAtaque() - m.getDefensa()) * 1.1f;
+        
             if (danio <= 0){
 		return "parece que no ha habido daño alguno";
            }
 	m.recibirDanio(danio);
         return null;
     }
- 
-
 }
