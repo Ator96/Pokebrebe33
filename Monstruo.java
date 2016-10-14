@@ -123,7 +123,10 @@ public abstract class Monstruo{
 		this.velocidad += velocidad;
 
 	}
-	public abstract float multiplicadorElemental(MonstruoEspecifico m);
-	public abstract String ataque1(float multiplicador,MonstruoEspecifico m);
-	public abstract String ataque2(MonstruoEspecifico m);
+	public abstract float multiplicadorElemental(Fuego m);
+	public abstract  float multiplicadorElemental(Agua m);
+	public abstract  float multiplicadorElemental(Electrico m);
+	public abstract  float multiplicadorElemental(Hierba m);
+	public abstract String ataque1(Monstruo m);
+	public abstract String ataque2(Monstruo m);
 }
