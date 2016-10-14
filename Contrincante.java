@@ -13,21 +13,18 @@ public class Contrincante {
 	public ArrayList<Monstruo> monstruos;
 	public ArrayList<Pocima> pocimas;
 
-	public Contrincante() {
+	public Contrincante(String nombre) {
+		this.nombre = nombre;
+		this.pocimas = new ArrayList<Pocima>();
 		this.pocimas.add(new PocimaVida());
 		this.pocimas.add(new PocimaVida());
 		this.pocimas.add(new PocimaAtaque());
 		this.pocimas.add(new PocimaAtaque());
 		this.pocimas.add(new PocimaDefensa());
 		this.pocimas.add(new PocimaDefensa());
-		/*Esto queda por definir de acuerdo a las clases de monstruo que definamos
-		this.monstruos.add(new Monstruo);
-		this.monstruos.add(new Monstruo);
-		this.monstruos.add(new Monstruo);
-		this.monstruos.add(new Monstruo);
-		this.monstruos.add(new Monstruo);
-		this.monstruos.add(new Monstruo);
-		*/
+		/*Esto queda por definir de acuerdo a las clases de monstruo que definamos*/
+		this.monstruos = new ArrayList<Monstruo>();
+		/**/
 	}
 	/**
 	* Guarda el monstruo activo en la banca
@@ -65,10 +62,10 @@ public class Contrincante {
 	*/
 	public void listaMonstruo() {
 		for (int i = 0; i < monstruos.size(); i++) {
-			System.out.println((i+1) + ". Monstruo: " + iterador.next().nombre);
-			System.out.println("\tNivel: " + iterador.next().nivel);
-			System.out.println("\tHP: " + iterador.next().hp);
-			System.out.println("\tEstado: " + iterador.next().estado);
+			System.out.println((i+1) + ". Monstruo: " + monstruos.get(i).apodo);
+			System.out.println("\tNivel: " + monstruos.get(i).nivel);
+			System.out.println("\tHP: " + monstruos.get(i).hp);
+			System.out.println("\tEstado: " + monstruos.get(i).estado);
 		}
 	}
 }
