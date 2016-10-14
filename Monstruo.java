@@ -65,16 +65,23 @@ public abstract class Monstruo{
         * @return Comentario sobre el estado
         * El método actualia la vida del monstruo aumentando la vida acorde a la posión que se le dé
 	*/
-	public  String recibirHp(PocimaVida p){
-		this.hp = this.hp + p.aumento;
+	public  String recibirHp(float aumento){
+		this.hp = this.hp + aumento;
 		return "ha aumentado la vida";
+	}
+	/**
+	*@param p pocima de aumento de vida recibida por su dueño
+        * @return Comentario sobre el estado
+	*/
+	public  void recibirAtaque(float aumento){
+		this.ataque = this.ataque + aumento;
 	}
 	/**
 	*@param p pocima de aumento de defensa recibida por el dueño
         * Actualiza la cantidad de desensa que posee el monstruo al recibir una pocima
 	*/
-	public  void recibirDefensa(PocimaVida p){
-		this.defensa = this.defensa + p.aumento;
+	public  void recibirDefensa(float aumento){
+		this.defensa = this.defensa + aumento;
 	}
 	/**
 	*@return ataque Obtenemos poder de ataque que posee el monstruo
