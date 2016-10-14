@@ -5,7 +5,7 @@ package pokeprebe;
  *
  * @author Oscar Gutiérrez Castillo
  */
-class  Carbon extends Fuego{
+class Carbon extends Fuego{
 
     /**
     *@param nivel nivel dado por el usuario para definir los status del monstruo

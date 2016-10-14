@@ -99,3 +99,4 @@ public abstract class Fuego extends Monstruo{
 	m.recibirDanio(danio);    
         return null;
     }
+}
