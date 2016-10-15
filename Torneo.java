@@ -18,6 +18,7 @@ public class Torneo{
     public int monstruos_jugador2;
     
     Scanner leer = new Scanner(System.in);
+    
     /**
     *@param nombre1 Nombre del  jugador uno
     *@param nombre2 Nombre del jugador dos
@@ -62,7 +63,9 @@ public class Torneo{
     *La funcion se encarga de adminsitrar los cambios de monstruos que den los usuarios
     */
     public void iniciaBatalla() {
+        System.out.println("Monstruos de " + jugador1.nombre);
         monstruo_jugador1 = jugador1.elegirMonstruo();
+        System.out.println("Monstruos de " + jugador2.nombre);
         monstruo_jugador2 = jugador2.elegirMonstruo();
     }
     /**
@@ -243,12 +246,13 @@ public class Torneo{
     public static void main(String[] args) {
             
         Scanner leer = new Scanner(System.in);
-        System.out.print("Ingrese el nombre del Jugador 1: ");
-        String j1 = leer.nextLine();
-        System.out.print("Ingrese el nombre del Jugador 2: ");
-        String j2 = leer.nextLine();
-        
-        Torneo torneo = new Torneo(j1,j2);
+        System.out.println("Bienvenido al Torneo\n Antes de empezar neceistamos conocer a los jugadores.");
+        System.out.print("Dame el nombre del primer jugador: ");
+        String name1 = leer.nextLine();
+        System.out.print("Dame el nombre del segundo jugador: ");
+        String name2 = leer.nextLine();
+        Torneo torneo = new Torneo(name1,name2);
+
         torneo.iniciaBatalla();
         do {
             torneo.estadoJuego();
