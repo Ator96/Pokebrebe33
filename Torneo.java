@@ -24,8 +24,8 @@ public class Torneo{
     *La funcion aparte de dar nombres a los jugadores, se encarga de repartir, de manera aleatoria los monstruos.
     */
     public Torneo(String nombre1, String nombre2){
-        jugador1 = new Contrincante("Pepe");
-        jugador2 = new Contrincante("Luis");
+        jugador1 = new Contrincante(nombre1);
+        jugador2 = new Contrincante(nombre2);
         
         ArrayList<Monstruo> monstruos = new ArrayList<>();
         monstruos.add(new Arbol(50));
@@ -49,7 +49,7 @@ public class Torneo{
             jugador1.monstruos.add(monstruos.get(rand));
             monstruos.remove(rand);
             n--;
-            rand = randomgenerator.nextInt(monstruo());
+            rand = randomgenerator.nextInt(monstruos.size());
             jugador2.monstruos.add(monstruos.get(rand));
             monstruos.remove(rand);
             n--;
@@ -63,21 +63,19 @@ public class Torneo{
     */
     public void iniciaBatalla() {
         monstruo_jugador1 = jugador1.elegirMonstruo();
-        System.out.println(jugador1.nombre + " ha enviado a " + monstruo_jugador1.apodo);
         monstruo_jugador2 = jugador2.elegirMonstruo();
-        System.out.println(jugador2.nombre + " ha enviado a " + monstruo_jugador2.apodo);
     }
     /**
     *Muestra los estatus del monstruo.
     *Da detalles de la vida, disponibilidad de combate y a que jugador pertence.
     */
     public void estadoJuego() {
-    System.out.println("Jugador 1:" + monstruo_jugador1.apodo + 
-            "HP: " + monstruo_jugador1.hp +
-            "Estado: " + monstruo_jugador1.estado);
-        System.out.println("Jugador 2:" + monstruo_jugador2.apodo + 
-            "HP: " + monstruo_jugador2.hp +
-            "Estado: " + monstruo_jugador2.estado);
+    System.out.println(jugador1.nombre + ": " + monstruo_jugador1.apodo + 
+            "\tHP: " + monstruo_jugador1.hp +
+            "\tEstado: " + monstruo_jugador1.estado);
+        System.out.println(jugador2.nombre + ": " + monstruo_jugador2.apodo + 
+            "\tHP: " + monstruo_jugador2.hp +
+            "\tEstado: " + monstruo_jugador2.estado);
     }
     /**
     *@param jugador Es el jugador en turno para atacar, dar pocima o quien cambiará su monstruo.
@@ -87,47 +85,72 @@ public class Torneo{
     public int darInstrucciones(Contrincante jugador, Monstruo monstruo_jugador) {
         
         int accion;
-    System.out.println("1. Atacar" + 
-            "\n2. Cambiar monstruo" + 
-            "\n3. Usar pócima");
-    System.out.println(jugador.nombre + ", ¿qué acción desea realizar? ");
-    accion = leer.nextInt();
-
-    if(accion == 1) {
+        System.out.println("1. Atacar" + 
+            "\t2. Cambiar monstruo" + 
+            "\t3. Usar pócima");
+        System.out.print(jugador.nombre + ", ¿qué acción deseas realizar? ");
+        accion = leer.nextInt();
+        
+        if(accion == 1) {
             int ataque;
             System.out.println("1. Ataque 1" +
-        "\n2. Ataque 2");
-            System.out.println("Elige ataque: ");
+                "\n2. Ataque 2");
+            System.out.print("Elige ataque: ");
             ataque = leer.nextInt();
             return ataque;
-    }
-    if(accion == 2) {
-            jugador.guardaMonstruo(monstruo_jugador);
-            monstruo_jugador = jugador.elegirMonstruo();
-            System.out.println(jugador.nombre + " ha cambiado por " + monstruo_jugador.apodo);
-    }
-    if(accion == 3) {
+        }
+        if(accion == 2) {
+            if(jugador == jugador1) {
+                jugador1.guardaMonstruo(monstruo_jugador1);
+                monstruo_jugador1 = jugador1.elegirMonstruo();
+            }
+            if(jugador == jugador2) {
+                jugador2.guardaMonstruo(monstruo_jugador2);
+                monstruo_jugador2 = jugador2.elegirMonstruo();
+            }
+        }
+        if(accion == 3) {
             int opcion_pocima;
             int opcion_monstruo;
             for(int i = 0; i < jugador.pocimas.size(); i++){
-        System.out.println((i+1) + ". " + jugador.pocimas.get(i).toString());
+                System.out.println((i+1) + ". " + jugador.pocimas.get(i).toString());
             }
             do {
-        System.out.println("Elige pócima a usar: ");
-        opcion_pocima = leer.nextInt();
+                System.out.print("Elige pócima a usar: ");
+                opcion_pocima = leer.nextInt();
             } while(opcion_pocima <= 0 && opcion_pocima > jugador.pocimas.size());
 
-            for(int i = 0; i < jugador.monstruos.size(); i++){
-        System.out.println((i+1) + ". " + jugador.monstruos.get(i).apodo);
-            }
+            jugador.listaMonstruo();
             do {
-                jugador.listaMonstruo();
-        System.out.println("Elige monstruo donde se usará la pócima: ");
-        opcion_monstruo = leer.nextInt();
+                
+                System.out.println("6. Monstruo: " + monstruo_jugador.apodo +
+                            "\tNivel: " + monstruo_jugador.nivel +
+                            "\tHP: " + monstruo_jugador.hp +
+                            "\tEstado: " + monstruo_jugador.estado);
+                System.out.print("Elige monstruo donde se usará la pócima: ");
+                opcion_monstruo = leer.nextInt();
             } while(opcion_monstruo <= 0 && opcion_monstruo > jugador.monstruos.size());
-            jugador.usarPocima(jugador.pocimas.get(opcion_pocima-1),jugador.monstruos.get(opcion_monstruo-1));
-    }
-    return 0;
+            
+            if (jugador == jugador1 ){
+                if(opcion_monstruo == 6 ){
+                    jugador1.usarPocima(jugador1.pocimas.get(opcion_pocima-1), monstruo_jugador1);
+                }
+                else {
+                    jugador.usarPocima(jugador1.pocimas.get(opcion_pocima-1),jugador1.monstruos.get(opcion_monstruo-1));
+                }
+            }
+            if (jugador == jugador2 ){
+                if(opcion_monstruo == 6 ){
+                    jugador2.usarPocima(jugador2.pocimas.get(opcion_pocima-1), monstruo_jugador2);
+                }
+                else {
+                    jugador.usarPocima(jugador2.pocimas.get(opcion_pocima-1),jugador2.monstruos.get(opcion_monstruo-1));
+                }
+            
+            }
+            
+        }
+        return 0;
     }
     /**
     *@param m1 Monstruo atacante
@@ -143,42 +166,73 @@ public class Torneo{
         if(ataque == 2) {
             m1.ataque2(m2);
         }
-        if(m2.hp <= 0) {
-            System.out.println(m2.apodo + "se ha debilitado.");
-            m2.estado = "debilitado";
-            jugador2.guardaMonstruo(m2);
+    }
+    
+    /**
+    *La funcion se encarga de sustituir un monstruo cuando ya se debilito.
+    * @param jugador jugador al que pertenece el monstruo debilitado
+    * @param m monstruo debilitado
+    */
+    public void sustituyeMonstruoDebilitado(Contrincante jugador, Monstruo m) {
+        System.out.println(m.apodo + " se ha debilitado.");
+        m.estado = "debilitado";
+        if(jugador == jugador1) {
+            jugador1.guardaMonstruo(m);
+            monstruos_jugador1--;
+            if(monstruos_jugador1 > 0){
+                monstruo_jugador1 = jugador1.elegirMonstruo();
+            }
+        }
+        if(jugador == jugador2) {
+            jugador2.guardaMonstruo(m);
             monstruos_jugador2--;
             if(monstruos_jugador2 > 0){
-                m2 = jugador2.elegirMonstruo();
+                monstruo_jugador2 = jugador2.elegirMonstruo();
             }
-        }   
+        }
     }
     /**
     *@param ataque1 ataque con bonus elemetnal
     *@param ataque2 ataque normal,el genérico de todos los monstruos.
     */
     public void horaChingazos(int ataque1, int ataque2) {
-        if(ataque1 == 0 && ataque2 == 0) {
-                return;
+        if (ataque1 == 0 && ataque2 == 0) {
+            return;
         }
         else if(ataque1 != 0 && ataque2 == 0) {
             ataqueMonstruos(monstruo_jugador1,monstruo_jugador2,ataque1);
-            return;
+            if(monstruo_jugador2.hp <= 0){
+                sustituyeMonstruoDebilitado(jugador2,monstruo_jugador2);
+            }
         }
         else if(ataque1 == 0 && ataque2 != 0) {
             ataqueMonstruos(monstruo_jugador2,monstruo_jugador1,ataque2);
-            return;
+            if(monstruo_jugador1.hp <= 0){
+                sustituyeMonstruoDebilitado(jugador1,monstruo_jugador1);
+            }
         }
         else {
             if(monstruo_jugador1.velocidad > monstruo_jugador2.velocidad) {
                 ataqueMonstruos(monstruo_jugador1,monstruo_jugador2,ataque1);
+                if(monstruo_jugador2.hp <= 0){
+                   sustituyeMonstruoDebilitado(jugador2,monstruo_jugador2);
+                   return;
+                }
                 ataqueMonstruos(monstruo_jugador2,monstruo_jugador1,ataque2);
-                return;
+                if(monstruo_jugador1.hp <= 0){
+                   sustituyeMonstruoDebilitado(jugador1,monstruo_jugador1);
+                }
             }
             else {
                 ataqueMonstruos(monstruo_jugador2,monstruo_jugador1,ataque2);
-                ataqueMonstruos(monstruo_jugador2,monstruo_jugador1,ataque2);
-                return;
+                if(monstruo_jugador1.hp <= 0){
+                   sustituyeMonstruoDebilitado(jugador1,monstruo_jugador1);
+                   return;
+                }
+                ataqueMonstruos(monstruo_jugador1,monstruo_jugador2,ataque2);
+                if(monstruo_jugador2.hp <= 0){
+                   sustituyeMonstruoDebilitado(jugador2,monstruo_jugador2);
+                }
             }
         }
     }
@@ -188,15 +242,19 @@ public class Torneo{
     */
     public static void main(String[] args) {
             
-            Torneo torneo = new Torneo("Pepe","Luis");
+        Scanner leer = new Scanner(System.in);
+        System.out.print("Ingrese el nombre del Jugador 1: ");
+        String j1 = leer.nextLine();
+        System.out.print("Ingrese el nombre del Jugador 2: ");
+        String j2 = leer.nextLine();
+        
+        Torneo torneo = new Torneo(j1,j2);
         torneo.iniciaBatalla();
         do {
             torneo.estadoJuego();
             int ataque1 = torneo.darInstrucciones(torneo.jugador1,torneo.monstruo_jugador1);
             int ataque2 = torneo.darInstrucciones(torneo.jugador2,torneo.monstruo_jugador2);
-            if(ataque1 != 0 && ataque2 != 0) {
-                 torneo.horaChingazos(ataque1,ataque2);
-            }
+            torneo.horaChingazos(ataque1,ataque2);
         } while(torneo.monstruos_jugador1 != 0 && torneo.monstruos_jugador2 != 0);
         if(torneo.monstruos_jugador1 == 0) {
             System.out.println("¡" + torneo.jugador2.nombre + " ha ganado la batalla!");
