@@ -18,14 +18,15 @@ public class Torneo{
     public int monstruos_jugador2;
     
     Scanner leer = new Scanner(System.in);
+    
     /**
     *@param nombre1 Nombre del  jugador uno
     *@param nombre2 Nombre del jugador dos
     *La funcion aparte de dar nombres a los jugadores, se encarga de repartir, de manera aleatoria los monstruos.
     */
     public Torneo(String nombre1, String nombre2){
-        jugador1 = new Contrincante("Pepe");
-        jugador2 = new Contrincante("Luis");
+        jugador1 = new Contrincante(nombre1);
+        jugador2 = new Contrincante(nombre2);
         
         ArrayList<Monstruo> monstruos = new ArrayList<>();
         monstruos.add(new Arbol(50));
@@ -188,7 +189,12 @@ public class Torneo{
     */
     public static void main(String[] args) {
             
-            Torneo torneo = new Torneo("Pepe","Luis");
+            System.out.println("Bienvenido al Torneo\n Antes de empezar neceistamos conocer a los jugadores.");
+            System.out.println("Dame el nombre del primer jugador:");
+            Stirng name1 = leer.nextLine();
+            System.out.println("Dame el nombre del segundo jugador:");
+            Stirng name2 = leer.nextLine();
+            Torneo torneo = new Torneo(name1,name2);
         torneo.iniciaBatalla();
         do {
             torneo.estadoJuego();
