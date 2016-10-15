@@ -1,0 +1,57 @@
+/-----------Manual de uso del Pokeprebe-----------/
+Este es un juego multijugador en tiempo real, el  cual consiste en la pelea 1vs1 de los Monstruos que posee cada uno de los contrincantes. 
+
+Cada monstruo que existe deriva de cuatro tipos  principales (Agua, Fuego, Electrico y Hierba), cada uno de estos pose tres tipos de monstruos que son con los que el usuario va interactuar.
+
+Esquema:
+	Monstruo-
+		|	 |-Nieve
+		|---Agua-|-Escarcha
+		|	 |-Hielo
+		|
+		|
+		|	 |Lava
+		|--Fuego-|Carbon
+		|	 |Termico
+		|
+		|
+		|	     |Chispa
+		|--Electrico-|Rayo
+		|	     |Iman
+		|
+		|
+		|	 |Arbol
+		|-Hierba-|Rosa
+		|	 |Planta
+
+Cada elemental tendrá distinas habilidades sobre los demás como bonos de ataque.
+
+El usuario recibirá los monstruos de manera aleatoria, pudiendo darles un podo y su respectivo nivel.
+
+imagen de apodo y nivel para el monstruo
+
+El ciclo del juego comienza seleccionando que monstruo utilizará al principio cada jugador.
+
+imagen para monstruo selecionado
+
+
+Dado esto, para todos los ataques, tendrá preferencia el monstruo mas rápido, los monstruos poseen dos ataques, uno especial, con el cual hará un daño específico contra un tipo de monstruo  o uno normal el cual hará el mismo daño para todos los contrincantes.
+
+Imagen de selección de daño
+
+
+En sustitución de un ataque el usuario podrá cambiar su monstruo u aplicarle un pócima que posea.
+
+Imagen de selección de pócima
+
+
+O también hacer un cambio por otro monstruo. IMPORTANTE: El cambio hará que se pierda el ataque del turno o uso de pocima
+
+
+Imagen de cambio de monstruo
+
+
+El final del juego será dado cuando se acabén los monstruos de uno de los dos contrincantes.No habrá rendición ya que es un torneo a muerte.
+
+Imagen de un jugador ganando.
+
