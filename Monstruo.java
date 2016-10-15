@@ -1,4 +1,5 @@
 package pokeprebe;
+import java.util.Random;
 
 /**
 *@author Oscar Gutiérrez Castillo
@@ -9,6 +10,7 @@ package pokeprebe;
 
 public abstract class Monstruo{
 	
+        Random randomGenerator = new Random();
 	protected float hp ;
 	protected String apodo;
 	protected int nivel;
@@ -26,10 +28,14 @@ public abstract class Monstruo{
 	*/
         @SuppressWarnings("OverridableMethodCallInConstructor")
 	Monstruo (int nivel, String apodo){
-		setAtaque((float)(nivel * 15.0));
-		setDefensa((float)(nivel * 10.0));
-		setVelocidad( (float)(nivel * 10.0));
-		this.hp = nivel  * 15;
+                int randomInt = randomGenerator.nextInt(10);
+           	setAtaque((float)(nivel * (float)(15 + randomInt) ));
+                randomInt = randomGenerator.nextInt(10);
+		setDefensa((float)(nivel * (float)(10 + randomInt) ));
+                randomInt = randomGenerator.nextInt(10);
+		setVelocidad( (float)(nivel *(float)(10 + randomInt) ));
+                randomInt = randomGenerator.nextInt(10);
+		this.hp = nivel  * (float)(10 + randomInt);
 		this.apodo = apodo;
 	}
 
@@ -40,11 +46,16 @@ public abstract class Monstruo{
         * El apodo será omitido y se dará un nombre default.
 	*/
         @SuppressWarnings("OverridableMethodCallInConstructor")
-	Monstruo (int nivel){
-		setAtaque((float)(nivel * 15.0));
-		setDefensa((float)(nivel * 10.0));
-		setVelocidad( (float)(nivel * 10.0));
-		this.hp = nivel * 15;
+	Monstruo (int nivel){                
+                int randomInt = randomGenerator.nextInt(10);
+           	setAtaque((float)(nivel * (float)(15 + randomInt) ));
+                randomInt = randomGenerator.nextInt(10);
+		setDefensa((float)(nivel * (float)(10 + randomInt) ));
+                randomInt = randomGenerator.nextInt(10);
+		setVelocidad( (float)(nivel *(float)(10 + randomInt) ));
+                randomInt = randomGenerator.nextInt(10);
+		this.hp = nivel  * (float)(10 + randomInt);
+
 	}
 	/**
 	*@param ataque Danio recibido al monstruo
@@ -123,10 +134,7 @@ public abstract class Monstruo{
 		this.velocidad += velocidad;
 
 	}
-	public abstract float multiplicadorElemental(Fuego m);
-	public abstract  float multiplicadorElemental(Agua m);
-	public abstract  float multiplicadorElemental(Electrico m);
-	public abstract  float multiplicadorElemental(Hierba m);
+	public abstract float multiplicadorElemental(Monstruo m);
 	public abstract String ataque1(Monstruo m);
 	public abstract String ataque2(Monstruo m);
 }
