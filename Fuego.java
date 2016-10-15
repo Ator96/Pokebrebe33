@@ -1,5 +1,7 @@
 package pokeprebe;
 
+import java.util.Random;
+
 /**
  * @author Oscar Gutiérrez Casillo
  */
@@ -20,16 +22,16 @@ public abstract class Fuego extends Monstruo{
     public float multiplicadorElemental(Monstruo m) {
         if (m instanceof Fuego) {
             return (float)0.5f; 
-	}
+    }
         if (m instanceof Agua) {
             return (float)0.5f; 
-	}
+    }
         if (m instanceof Electrico) {
             return (float)1.0f; 
-	}
+    }
         if (m instanceof Hierba) {
             return (float)2.0f; 
-	}
+    }
         return 0;
     }
     
@@ -38,14 +40,16 @@ public abstract class Fuego extends Monstruo{
      * @return Estado sobre el daño
      */
     public String ataque1(Monstruo m){
-    	float multiplicador = multiplicadorElemental(m);
-        System.out.println(multiplicador);
-	float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-	if (danio <= 0){
-		return "parece que no ha habido daño alguno";
-	}
-	m.recibirDanio(danio);    
-        return null;
+        Random rand = new Random();
+        float ran = rand.nextFloat();
+        float multiplicador = multiplicadorElemental(m);
+        if (ran < 0.8){
+            float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+            if (danio <= 0){
+                    return "parece que no ha habido daño alguno";
+            }
+            m.recibirDanio(danio);    
+        }
+            return "El ataque no ha echo efecto, lo ha esquivado";
     }
-
 }

@@ -1,5 +1,7 @@
 package pokeprebe;
 
+import java.util.Random;
+
 /**
  * @author Oscar Gutiérrez Castillo
  */
@@ -16,7 +18,7 @@ public abstract class Hierba extends Monstruo{
      * @param m Es la clase padre del monstruo que recibe el ataque 
      * @return multiplicador La cadtidad de daño por la cual será multiplicado el daño que se reciba
      */
-    public float multiplicadorElemetnal(Monstruo m){
+    public float multiplicadorElemental(Monstruo m){
         
     if (m instanceof Agua){
             return  2.0f; 
@@ -38,14 +40,17 @@ public abstract class Hierba extends Monstruo{
      * @return Estado sobre el daño
      */
     public String ataque1(Monstruo m){
+        Random rand = new Random();
+        float ran = rand.nextFloat();
         float multiplicador = multiplicadorElemental(m);
-    float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-    if (danio <= 0){
-        return "parece que no ha habido daño alguno";
+        if (ran < 0.8){
+            float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+            if (danio <= 0){
+                    return "parece que no ha habido daño alguno";
+            }
+            m.recibirDanio(danio);    
+        }
+            return "El ataque no ha echo efecto, lo ha esquivado";
     }
-    m.recibirDanio(danio);    
-        return null;
-    }
-
 }
 

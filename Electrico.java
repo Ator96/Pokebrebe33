@@ -1,5 +1,7 @@
 package pokeprebe;
 
+import java.util.Random;
+
 /**
  * @author Oscar Gutiérrez
  */
@@ -37,12 +39,16 @@ public abstract class Electrico extends Monstruo{
      * @return Estado sobre el daño
      */
     public String ataque1(Monstruo m){
+        Random rand = new Random();
+        float ran = rand.nextFloat();
         float multiplicador = multiplicadorElemental(m);
-    float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-    if (danio <= 0){
-        return "parece que no ha habido daño alguno";
-    }
-    m.recibirDanio(danio);    
-        return null;
+        if (ran < 0.8){
+            float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
+            if (danio <= 0){
+                    return "parece que no ha habido daño alguno";
+            }
+            m.recibirDanio(danio);    
+        }
+            return "El ataque no ha echo efecto, lo ha esquivado";
     }
 }
