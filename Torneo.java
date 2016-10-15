@@ -1,3 +1,7 @@
+/**
+*@author Oscar Gutiérrez Castillo
+*@author David Yaxkin Sánchez Neri
+*/
 package pokeprebe;
 
 import java.util.Scanner;
@@ -14,6 +18,11 @@ public class Torneo{
     public int monstruos_jugador2;
     
     Scanner leer = new Scanner(System.in);
+    /**
+    *@param nombre1 Nombre del  jugador uno
+    *@param nombre2 Nombre del jugador dos
+    *La funcion aparte de dar nombres a los jugadores, se encarga de repartir, de manera aleatoria los monstruos.
+    */
     public Torneo(String nombre1, String nombre2){
         jugador1 = new Contrincante("Pepe");
         jugador2 = new Contrincante("Luis");
@@ -40,7 +49,7 @@ public class Torneo{
             jugador1.monstruos.add(monstruos.get(rand));
             monstruos.remove(rand);
             n--;
-            rand = randomgenerator.nextInt(monstruos.size());
+            rand = randomgenerator.nextInt(monstruo());
             jugador2.monstruos.add(monstruos.get(rand));
             monstruos.remove(rand);
             n--;
@@ -49,14 +58,19 @@ public class Torneo{
         monstruos_jugador2 = jugador2.monstruos.size();
         
     }
-
+    /**
+    *La funcion se encarga de adminsitrar los cambios de monstruos que den los usuarios
+    */
     public void iniciaBatalla() {
         monstruo_jugador1 = jugador1.elegirMonstruo();
         System.out.println(jugador1.nombre + " ha enviado a " + monstruo_jugador1.apodo);
         monstruo_jugador2 = jugador2.elegirMonstruo();
         System.out.println(jugador2.nombre + " ha enviado a " + monstruo_jugador2.apodo);
     }
-
+    /**
+    *Muestra los estatus del monstruo.
+    *Da detalles de la vida, disponibilidad de combate y a que jugador pertence.
+    */
     public void estadoJuego() {
     System.out.println("Jugador 1:" + monstruo_jugador1.apodo + 
             "HP: " + monstruo_jugador1.hp +
@@ -65,7 +79,11 @@ public class Torneo{
             "HP: " + monstruo_jugador2.hp +
             "Estado: " + monstruo_jugador2.estado);
     }
-
+    /**
+    *@param jugador Es el jugador en turno para atacar, dar pocima o quien cambiará su monstruo.
+    *@param monstruo_jugador Monstruo que será afectato por la desisión que tome el jugador 
+    *@return En caso de que se efectue un retorno se regresá el resultado de dicho ataque
+    */
     public int darInstrucciones(Contrincante jugador, Monstruo monstruo_jugador) {
         
         int accion;
@@ -111,7 +129,13 @@ public class Torneo{
     }
     return 0;
     }
-
+    /**
+    *@param m1 Monstruo atacante
+    *@param m2 Monstruo defensor
+    *@param ataque ataque que se efectuara
+    *La funcion manda los ataques del monstruo agresor al defensor, ataque 1 o ataque 2 determinan el daño recibido
+    *Si el monstruo pierde toda su vida quedará inutil para el combate.
+    */
     public void ataqueMonstruos(Monstruo m1, Monstruo m2, int ataque) {
         if(ataque == 1) {
             m1.ataque1(m2);
@@ -129,7 +153,10 @@ public class Torneo{
             }
         }   
     }
-
+    /**
+    *@param ataque1 ataque con bonus elemetnal
+    *@param ataque2 ataque normal,el genérico de todos los monstruos.
+    */
     public void horaChingazos(int ataque1, int ataque2) {
         if(ataque1 == 0 && ataque2 == 0) {
                 return;
@@ -155,7 +182,10 @@ public class Torneo{
             }
         }
     }
-
+    /**
+    *Funcion principal, es la encargada de llevar el contador de monstrus vivos para determinar que jugador a ganado o no.
+    *Compara el numero de monstruos, si uno llega a cero pierde en automático.
+    */
     public static void main(String[] args) {
             
             Torneo torneo = new Torneo("Pepe","Luis");
