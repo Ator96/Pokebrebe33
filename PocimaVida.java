@@ -15,4 +15,11 @@ public class PocimaVida extends Pocima {
 		monstruo.recibirHp(aumento);
 		return aumento;
 	}
+	
+	/**
+	*Formato personalizado
+	*/
+	public String toString(){
+		return "Pocima de defensa";
+	}
 }

@@ -15,4 +15,11 @@ public class PocimaDefensa extends Pocima {
 		monstruo.recibirDefensa(aumento);
 		return aumento;
 	}
+
+	/**
+	*Formato personalizado
+	*/
+	public String toString(){
+		return "Pocima de defensa";
+	}
 }
