@@ -1,6 +1,8 @@
 package pokeprebe;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Torneo{
     
@@ -10,17 +12,42 @@ public class Torneo{
     public Monstruo monstruo_jugador2;
     public int monstruos_jugador1;
     public int monstruos_jugador2;
-    public String accion_jugador1;
-    public String accion_jugador2;
-
+    
     Scanner leer = new Scanner(System.in);
     public Torneo(String nombre1, String nombre2){
         jugador1 = new Contrincante("Pepe");
         jugador2 = new Contrincante("Luis");
-        jugador1.monstruos.add(new Carbon(20,"Bofo"));
-        jugador2.monstruos.add(new Lava(19,"Vulkin"));
+        
+        ArrayList<Monstruo> monstruos = new ArrayList<>();
+        monstruos.add(new Arbol(50));
+        monstruos.add(new Carbon(50));
+        monstruos.add(new Chispa(50));
+        monstruos.add(new Escarcha(50));
+        monstruos.add(new Hielo(50));
+        monstruos.add(new Iman(50));
+        monstruos.add(new Lava(50));
+        monstruos.add(new Nieve(50));
+        monstruos.add(new Planta(50));
+        monstruos.add(new Rayo(50));
+        monstruos.add(new Rosa(50));
+        monstruos.add(new Termico(50));
+        
+        Random randomgenerator = new Random();
+        int n = monstruos.size();
+        int rand;
+        while ( n > 0 ) {
+            rand = randomgenerator.nextInt(monstruos.size());
+            jugador1.monstruos.add(monstruos.get(rand));
+            monstruos.remove(rand);
+            n--;
+            rand = randomgenerator.nextInt(monstruos.size());
+            jugador2.monstruos.add(monstruos.get(rand));
+            monstruos.remove(rand);
+            n--;
+        }
         monstruos_jugador1 = jugador1.monstruos.size();
         monstruos_jugador2 = jugador2.monstruos.size();
+        
     }
 
     public void iniciaBatalla() {
@@ -135,9 +162,9 @@ public class Torneo{
             int ataque1 = torneo.darInstrucciones(torneo.jugador1);
             int ataque2 = torneo.darInstrucciones(torneo.jugador2);
             if(ataque1 != 0 && ataque2 != 0) {
-                            torneo.horaChingazos(ataque1,ataque2);
+                 torneo.horaChingazos(ataque1,ataque2);
             }
-        }while(torneo.monstruos_jugador1 != 0 || torneo.monstruos_jugador2 != 0);
+        } while(torneo.monstruos_jugador1 != 0 && torneo.monstruos_jugador2 != 0);
         if(torneo.monstruos_jugador1 == 0) {
             System.out.println("¡" + torneo.jugador2.nombre + " ha ganado la batalla!");
         }
@@ -146,3 +173,4 @@ public class Torneo{
         }
     }
 }
+

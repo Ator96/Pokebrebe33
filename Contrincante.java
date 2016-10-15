@@ -42,9 +42,13 @@ public class Contrincante {
 		Scanner leer = new Scanner(System.in);
 		int opcion;
 		listaMonstruo();
-		System.out.println("Elige un monstruo");
-		opcion = leer.nextInt();
-		return monstruos.remove(opcion);
+		do {
+			System.out.println("Elige un monstruo");
+			opcion = leer.nextInt();
+                }
+		while(monstruos.get(opcion-1).estado.equals("debilitado"));
+		
+		return monstruos.remove(opcion-1);
 	}
 
 	/**
