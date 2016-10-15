@@ -21,6 +21,6 @@ public class PocimaAtaque extends Pocima {
 	*Formato personalizado
 	*/
 	public String toString(){
-		return "Pocima de vida";
+		return "Pocima de ataque";
 	}
 }

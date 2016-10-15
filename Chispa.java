@@ -27,12 +27,12 @@ class  Chispa extends Electrico{
     */
     @Override
    public void ataque2(Monstruo m) {
-        float danio = (float) (getAtaque() -  m.getDefensa() * 1.5);
-            if (danio <= 0){
-		System.out.println( "parece que no ha habido daño alguno");
-           }
-	m.recibirDanio(danio);
-    System.out.println(m.apodo + "ha sido atacado y ha recibido un daño de:" + danio);
+        float danio = (float) ((getAtaque() -  m.getDefensa()) * 1.1);
+        if (danio <= 0){
+            danio = 0;
         }
+        m.recibirDanio(danio);
+        System.out.println(this.apodo + " ha usado Embestida, " + m.apodo + " ha recibido " + danio + " puntos de daño");
+    }
  
 }

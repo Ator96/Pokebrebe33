@@ -28,6 +28,7 @@ public abstract class Monstruo{
 	*/
         @SuppressWarnings("OverridableMethodCallInConstructor")
 	Monstruo (int nivel, String apodo){
+                this.nivel = nivel;
                 int randomInt = randomGenerator.nextInt(10);
            	setAtaque((float)(nivel * (float)(15 + randomInt) ));
                 randomInt = randomGenerator.nextInt(10);
@@ -46,7 +47,8 @@ public abstract class Monstruo{
         * El apodo será omitido y se dará un nombre default.
 	*/
         @SuppressWarnings("OverridableMethodCallInConstructor")
-	Monstruo (int nivel){                
+	Monstruo (int nivel){        
+                this.nivel = nivel;
                 int randomInt = randomGenerator.nextInt(10);
            	setAtaque((float)(nivel * (float)(15 + randomInt) ));
                 randomInt = randomGenerator.nextInt(10);

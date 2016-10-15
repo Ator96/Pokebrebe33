@@ -15,7 +15,7 @@ public class Contrincante {
 
 	public Contrincante(String nombre) {
 		this.nombre = nombre;
-		this.pocimas = new ArrayList<Pocima>();
+		this.pocimas = new ArrayList<>();
 		this.pocimas.add(new PocimaVida());
 		this.pocimas.add(new PocimaVida());
 		this.pocimas.add(new PocimaAtaque());
@@ -23,7 +23,7 @@ public class Contrincante {
 		this.pocimas.add(new PocimaDefensa());
 		this.pocimas.add(new PocimaDefensa());
 		/*Esto queda por definir de acuerdo a las clases de monstruo que definamos*/
-		this.monstruos = new ArrayList<Monstruo>();
+		this.monstruos = new ArrayList<>();
 		/**/
 	}
 	/**
@@ -32,6 +32,7 @@ public class Contrincante {
 	*/
 	public void guardaMonstruo(Monstruo monstruo) {
 		this.monstruos.add(monstruo);
+                System.out.println(this.nombre + " regresa a " + monstruo.apodo);
 	}
 
 	/**
@@ -43,11 +44,11 @@ public class Contrincante {
 		int opcion;
 		listaMonstruo();
 		do {
-			System.out.println("Elige un monstruo");
+			System.out.print("Elige un monstruo para combatir:");
 			opcion = leer.nextInt();
                 }
 		while(monstruos.get(opcion-1).estado.equals("debilitado"));
-		
+		System.out.println(this.nombre + " ha enviado a " + monstruos.get(opcion-1).apodo);
 		return monstruos.remove(opcion-1);
 	}
 
@@ -58,6 +59,7 @@ public class Contrincante {
 	*/
 	public void usarPocima(Pocima pocima, Monstruo monstruo) {
 		pocima.usar(monstruo);
+                System.out.println(this.nombre + " ha usado " + pocima.toString() + " en " + monstruo.apodo);
 		pocimas.remove(pocima);
 	}
 
@@ -66,10 +68,10 @@ public class Contrincante {
 	*/
 	public void listaMonstruo() {
 		for (int i = 0; i < monstruos.size(); i++) {
-			System.out.println((i+1) + ". Monstruo: " + monstruos.get(i).apodo);
-			System.out.println("\tNivel: " + monstruos.get(i).nivel);
-			System.out.println("\tHP: " + monstruos.get(i).hp);
-			System.out.println("\tEstado: " + monstruos.get(i).estado);
+			System.out.println((i+1) + ". Monstruo: " + monstruos.get(i).apodo +
+                            "\tNivel: " + monstruos.get(i).nivel +
+                            "\tHP: " + monstruos.get(i).hp +
+                            "\tEstado: " + monstruos.get(i).estado);
 		}
 	}
 }

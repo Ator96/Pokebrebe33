@@ -44,11 +44,14 @@ public abstract class Agua extends Monstruo {
         float multiplicador = multiplicadorElemental(m);
         if (ran < 0.8){
             float danio = (getAtaque() -  m.getDefensa() ) * multiplicador;
-            if (danio <= 0){
-                    System.out.println( "parece que no ha habido daño alguno");
+            if (danio <0) {
+                danio = 0;
             }
+            System.out.println(this.apodo + " ha usado Hidrobomba, " + m.apodo + " ha recibido " + danio + " puntos de daño");
             m.recibirDanio(danio);    
         }
-            System.out.println( "El ataque no ha echo efecto, lo ha esquivado");
+        else{
+            System.out.println(this.apodo + " ha fallado.");
+        }
     }
 }
