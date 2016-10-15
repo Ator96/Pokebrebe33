@@ -36,7 +36,6 @@ public abstract class Electrico extends Monstruo{
     }
     /**
      * @param m Se recibe gracias al polimorfismo el tipo de monstruo a atacar, se aplica  un potenciador de daño
-     * @return Estado sobre el daño
      */
     public void ataque1(Monstruo m){
         Random rand = new Random();
