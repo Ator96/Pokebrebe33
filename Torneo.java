@@ -178,6 +178,7 @@ public class Torneo{
     */
     public void sustituyeMonstruoDebilitado(Contrincante jugador, Monstruo m) {
         System.out.println(m.apodo + " se ha debilitado.");
+        m.hp = 0;
         m.estado = "debilitado";
         if(jugador == jugador1) {
             jugador1.guardaMonstruo(m);
