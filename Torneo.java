@@ -52,7 +52,9 @@ public class Torneo{
 
     public void iniciaBatalla() {
         monstruo_jugador1 = jugador1.elegirMonstruo();
-    monstruo_jugador2 = jugador2.elegirMonstruo();
+        System.out.println(jugador1.nombre + " ha enviado a " + monstruo_jugador1.apodo);
+        monstruo_jugador2 = jugador2.elegirMonstruo();
+        System.out.println(jugador2.nombre + " ha enviado a " + monstruo_jugador2.apodo);
     }
 
     public void estadoJuego() {
@@ -64,7 +66,7 @@ public class Torneo{
             "Estado: " + monstruo_jugador2.estado);
     }
 
-    public int darInstrucciones(Contrincante jugador) {
+    public int darInstrucciones(Contrincante jugador, Monstruo monstruo_jugador) {
         
         int accion;
     System.out.println("1. Atacar" + 
@@ -82,8 +84,9 @@ public class Torneo{
             return ataque;
     }
     if(accion == 2) {
-            jugador.guardaMonstruo(monstruo_jugador1);
-            monstruo_jugador1 = jugador.elegirMonstruo();
+            jugador.guardaMonstruo(monstruo_jugador);
+            monstruo_jugador = jugador.elegirMonstruo();
+            System.out.println(jugador.nombre + " ha cambiado por " + monstruo_jugador.apodo);
     }
     if(accion == 3) {
             int opcion_pocima;
@@ -94,7 +97,7 @@ public class Torneo{
             do {
         System.out.println("Elige pócima a usar: ");
         opcion_pocima = leer.nextInt();
-            } while(opcion_pocima > 0 && opcion_pocima <= jugador.pocimas.size());
+            } while(opcion_pocima <= 0 && opcion_pocima > jugador.pocimas.size());
 
             for(int i = 0; i < jugador.monstruos.size(); i++){
         System.out.println((i+1) + ". " + jugador.monstruos.get(i).apodo);
@@ -103,7 +106,7 @@ public class Torneo{
                 jugador.listaMonstruo();
         System.out.println("Elige monstruo donde se usará la pócima: ");
         opcion_monstruo = leer.nextInt();
-            } while(opcion_monstruo > 0 && opcion_monstruo <= jugador.monstruos.size());
+            } while(opcion_monstruo <= 0 && opcion_monstruo > jugador.monstruos.size());
             jugador.usarPocima(jugador.pocimas.get(opcion_pocima-1),jugador.monstruos.get(opcion_monstruo-1));
     }
     return 0;
@@ -159,8 +162,8 @@ public class Torneo{
         torneo.iniciaBatalla();
         do {
             torneo.estadoJuego();
-            int ataque1 = torneo.darInstrucciones(torneo.jugador1);
-            int ataque2 = torneo.darInstrucciones(torneo.jugador2);
+            int ataque1 = torneo.darInstrucciones(torneo.jugador1,torneo.monstruo_jugador1);
+            int ataque2 = torneo.darInstrucciones(torneo.jugador2,torneo.monstruo_jugador2);
             if(ataque1 != 0 && ataque2 != 0) {
                  torneo.horaChingazos(ataque1,ataque2);
             }
