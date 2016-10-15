@@ -25,13 +25,13 @@ class  Nieve extends Agua{
     *@param m Por polimorfismo afectamos directamente el status de vida del monstruo a atacar
     */
     @Override
-    public String ataque2(Monstruo m) {
+   public void ataque2(Monstruo m) {
         float danio = (float) (getAtaque() -  m.getDefensa() * 1.5);
             if (danio <= 0){
-		return "parece que no ha habido daño alguno";
+		System.out.println( "parece que no ha habido daño alguno");
            }
 	m.recibirDanio(danio);
-        return null;
-    }
+    System.out.println(m.apodo + "ha sido atacado y ha recibido un daño de:" + danio);
+        }
  
 }

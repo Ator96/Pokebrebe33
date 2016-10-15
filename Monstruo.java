@@ -135,6 +135,6 @@ public abstract class Monstruo{
 
 	}
 	public abstract float multiplicadorElemental(Monstruo m);
-	public abstract String ataque1(Monstruo m);
-	public abstract String ataque2(Monstruo m);
+	public abstract void ataque1(Monstruo m);
+	public abstract void ataque2(Monstruo m);
 }
